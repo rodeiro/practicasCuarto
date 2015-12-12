@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" targetNamespace="http://soap.ws.udc.es/" xmlns:tns="http://soap.ws.udc.es/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="ObtenerReservas" type="tns:ObtenerReservas"/>
+
+  <xs:element name="ObtenerReservasResponse" type="tns:ObtenerReservasResponse"/>
+
+  <xs:element name="SoapBadStateException" nillable="true" type="tns:soapBadStateExceptionInfo"/>
+
+  <xs:element name="SoapInputValidationException" nillable="true" type="xs:string"/>
+
+  <xs:element name="SoapInstanceNotFoundException" nillable="true" type="tns:soapInstanceNotFoundExceptionInfo"/>
+
+  <xs:element name="SoapMaxNReservaException" nillable="true" type="tns:soapMaxNReservaExceptionInfo"/>
+
+  <xs:element name="SoapOfertaExpirationException" nillable="true" type="tns:soapOfertaExpirationExceptionInfo"/>
+
+  <xs:element name="SoapReservaEmailException" nillable="true" type="tns:soapReservaEmailExceptionInfo"/>
+
+  <xs:element name="addOferta" type="tns:addOferta"/>
+
+  <xs:element name="addOfertaResponse" type="tns:addOfertaResponse"/>
+
+  <xs:element name="buyOferta" type="tns:buyOferta"/>
+
+  <xs:element name="buyOfertaResponse" type="tns:buyOfertaResponse"/>
+
+  <xs:element name="findOferta" type="tns:findOferta"/>
+
+  <xs:element name="findOfertaResponse" type="tns:findOfertaResponse"/>
+
+  <xs:element name="findOfertas" type="tns:findOfertas"/>
+
+  <xs:element name="findOfertasResponse" type="tns:findOfertasResponse"/>
+
+  <xs:element name="findReserva" type="tns:findReserva"/>
+
+  <xs:element name="findReservaResponse" type="tns:findReservaResponse"/>
+
+  <xs:element name="reclamarOferta" type="tns:reclamarOferta"/>
+
+  <xs:element name="reclamarOfertaResponse" type="tns:reclamarOfertaResponse"/>
+
+  <xs:element name="removeOferta" type="tns:removeOferta"/>
+
+  <xs:element name="removeOfertaResponse" type="tns:removeOfertaResponse"/>
+
+  <xs:element name="updateOferta" type="tns:updateOferta"/>
+
+  <xs:element name="updateOfertaResponse" type="tns:updateOfertaResponse"/>
+
+  <xs:complexType name="buyOferta">
+    <xs:sequence>
+      <xs:element name="ofertaId" type="xs:long" minOccurs="0"/>
+      <xs:element name="userId" type="xs:string" minOccurs="0"/>
+      <xs:element name="creditCardNumber" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="buyOfertaResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:long" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="soapInstanceNotFoundExceptionInfo">
+    <xs:sequence>
+      <xs:element name="instanceId" type="xs:anyType" minOccurs="0"/>
+      <xs:element name="instanceType" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="soapOfertaExpirationExceptionInfo">
+    <xs:sequence>
+      <xs:element name="dataFin" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="ofertaId" type="xs:long" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="soapMaxNReservaExceptionInfo">
+    <xs:sequence>
+      <xs:element name="maxI" type="xs:int" minOccurs="0"/>
+      <xs:element name="ofertaId" type="xs:long" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="soapBadStateExceptionInfo">
+    <xs:sequence>
+      <xs:element name="estado" type="xs:string" minOccurs="0"/>
+      <xs:element name="ofertaId" type="xs:long" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="soapReservaEmailExceptionInfo">
+    <xs:sequence>
+      <xs:element name="mail" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findOfertas">
+    <xs:sequence>
+      <xs:element name="keywords" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findOfertasResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:ofertaDto" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ofertaDto">
+    <xs:sequence>
+      <xs:element name="costeD" type="xs:float"/>
+      <xs:element name="costeR" type="xs:float"/>
+      <xs:element name="datadis" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="datafin" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="dataini" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="descripcion" type="xs:string" minOccurs="0"/>
+      <xs:element name="maxi" type="xs:int" minOccurs="0"/>
+      <xs:element name="nomeO" type="xs:string" minOccurs="0"/>
+      <xs:element name="ofertaId" type="xs:long" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="updateOferta">
+    <xs:sequence>
+      <xs:element name="ofertaDto" type="tns:ofertaDto" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="updateOfertaResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="addOferta">
+    <xs:sequence>
+      <xs:element name="ofertaDto" type="tns:ofertaDto" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="addOfertaResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:long" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="reclamarOferta">
+    <xs:sequence>
+      <xs:element name="reservaId" type="xs:long" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="reclamarOfertaResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="removeOferta">
+    <xs:sequence>
+      <xs:element name="ofertaId" type="xs:long" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="removeOfertaResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="ObtenerReservas">
+    <xs:sequence>
+      <xs:element name="ofertaId" type="xs:long" minOccurs="0"/>
+      <xs:element name="estado" type="xs:boolean" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ObtenerReservasResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:reservaDto" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="reservaDto">
+    <xs:sequence>
+      <xs:element name="dataCrea" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="emailUs" type="xs:string" minOccurs="0"/>
+      <xs:element name="nconta" type="xs:string" minOccurs="0"/>
+      <xs:element name="ofertaId" type="xs:long" minOccurs="0"/>
+      <xs:element name="reservaId" type="xs:long" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findOferta">
+    <xs:sequence>
+      <xs:element name="ofertaId" type="xs:long" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findOfertaResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:ofertaDto" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findReserva">
+    <xs:sequence>
+      <xs:element name="reservaId" type="xs:long" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findReservaResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:reservaDto" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+
